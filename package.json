@@ -1,0 +1,22 @@
+{
+  "name": "learn-node-js",
+  "version": "1.0.0",
+  "description": "rest api",
+  "keywords": [
+    "restfull",
+    "api"
+  ],
+  "license": "ISC",
+  "author": "Vishal gupta",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.7.0",
+    "nodemon": "^3.1.14"
+  }
+}
