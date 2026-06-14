@@ -5,10 +5,10 @@ const app = express();
 const cskRouter = require("./api/router/csk");
 const rcbRouter = require("./api/router/rcb");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+dotenv.config();
 
-mongoose.connect(
-  "mongodb+srv://vishalgupta10852:4xkmnApksFS5rHke@cluster0.d1v8ddh.mongodb.net/",
-);
+mongoose.connect(process.env.MONGODB_URI, {});
 
 mongoose.connection.on("connected", () => {
   console.log("Connected with database successfully");

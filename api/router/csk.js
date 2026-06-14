@@ -19,6 +19,50 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+  const cskId = req.params.id;
+  CSK.findById(cskId)
+    .then((csk) => {
+      if (!csk) {
+        return res.status(404).json({
+          message: "CSK not found",
+        });
+      }
+      res.status(200).json({
+        message: "CSK retrieved successfully",
+        data: csk,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Error retrieving CSK",
+        error: error,
+      });
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  const cskId = req.params.id;
+  CSK.findByIdAndDelete(cskId)
+    .then((deletedCSK) => {
+      if (!deletedCSK) {
+        return res.status(404).json({
+          message: "CSK not found",
+        });
+      }
+      res.status(200).json({
+        message: "CSK deleted successfully",
+        data: deletedCSK,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Error deleting CSK",
+        error: error,
+      });
+    });
+});
+
 router.post("/", (req, res) => {
   const { _id, fullName, email, number, coachName } = req.body;
 
