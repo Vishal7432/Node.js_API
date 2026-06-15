@@ -63,6 +63,33 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+router.put("/:id", (req, res) => {
+  const cskId = req.params.id;
+  const { fullName, email, number, coachName } = req.body;
+  CSK.findByIdAndUpdate(
+    cskId,
+    { fullName, email, number, coachName },
+    { new: true }
+  )
+    .then((updatedCSK) => {
+      if (!updatedCSK) {
+        return res.status(404).json({
+          message: "CSK not found",
+        });
+      }
+      res.status(200).json({
+        message: "CSK updated successfully",
+        data: updatedCSK,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Error updating CSK",
+        error: error,
+      });
+    });
+});
+
 router.post("/", (req, res) => {
   const { _id, fullName, email, number, coachName } = req.body;
 
